@@ -1,0 +1,142 @@
+:root {
+  --bg: transparent; /* fundo transparente para ver o mapa */
+  --card: rgba(15, 18, 33, 0.8); /* painel semi-transparente */
+  --text: #fff;
+  --muted: #a6add3;
+  --brand: #7c9cff;
+  --accent: #6ee7ff;
+  --border: rgba(255, 255, 255, 0.1);
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.page {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+/* Mapa como background */
+.map-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0; /* atrás de tudo */
+}
+
+.topbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(6px);
+}
+
+.brand {
+  font-weight: 900;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.brand .dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(110, 231, 255, 0.3);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.picker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.palette {
+  display: flex;
+  gap: 8px;
+  padding: 6px;
+  border-radius: 8px;
+  background: var(--card);
+}
+
+.swatch {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+.swatch:hover {
+  transform: scale(1.05);
+}
+
+.hud {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  width: 280px;
+  padding: 14px;
+  background: var(--card);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(6px);
+  z-index: 2;
+}
+.hud h4 {
+  margin: 0 0 8px 0;
+  color: var(--muted);
+}
+.hud p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  filter: grayscale(0.2);
+}
+
+.auth-btn {
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.auth-btn:hover {
+  filter: brightness(1.08);
+}
+.user-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
