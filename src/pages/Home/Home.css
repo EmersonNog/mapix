@@ -1,6 +1,6 @@
 :root {
-  --bg: transparent; /* fundo transparente para ver o mapa */
-  --card: rgba(15, 18, 33, 0.8); /* painel semi-transparente */
+  --bg: transparent;
+  --card: rgba(15, 18, 33, 0.8);
   --text: #fff;
   --muted: #a6add3;
   --brand: #7c9cff;

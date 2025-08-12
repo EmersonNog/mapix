@@ -8,6 +8,7 @@ import { quantize } from "../../lib/grid";
 import type { Pixel, PlaceResponse } from "../../types";
 import type { Session } from "@supabase/supabase-js";
 import { useNavigate } from "react-router-dom";
+import GridOverlay from "../../components/GridOverlay";
 
 const EDGE_PLACE_URL =
   import.meta.env.VITE_SUPABASE_EDGE_PLACE_URL ??
@@ -118,7 +119,7 @@ export default function Home() {
   const logged = !!session;
 
   return (
-    <div className="page">
+    <div className={`page ${logged ? "can-paint" : ""}`}>
       {/* Mapa em tela cheia atrás */}
       <div className="map-wrap">
         <MapContainer
@@ -132,6 +133,7 @@ export default function Home() {
             attribution="&copy; OpenStreetMap contributors"
           />
           <CanvasPixelsLayer pixels={pixels} />
+          <GridOverlay show={true /* ou logged */} />
           <ClickToPlace
             color={color}
             session={session}
@@ -148,7 +150,7 @@ export default function Home() {
         </div>
         <div className="spacer" />
         <div className={`picker ${logged ? "" : "disabled"}`}>
-          <span style={{ color: "var(--muted)", fontSize: 13 }}>Cor:</span>
+          <span style={{ color: "var(--text)", fontSize: 13 }}>Cor:</span>
           <div className="palette" role="toolbar" aria-label="Selecionar cor">
             {palette.map((c) => (
               <button
@@ -166,7 +168,7 @@ export default function Home() {
         </div>
         {logged ? (
           <div className="user-badge" style={{ marginLeft: 12 }}>
-            <span>Logado</span>
+            <span style={{ color: "var(--text)", fontSize: 13 }}>Logado</span>
             <button className="auth-btn" onClick={signOut}>
               Sair
             </button>
@@ -184,9 +186,17 @@ export default function Home() {
 
       {/* HUD */}
       <aside className="hud">
-        <h4>Como funciona</h4>
-        <p>Clique no mapa para “pintar” um bloco na grade.</p>
-        {!logged && <p className="hint">Faça login para liberar a pintura.</p>}
+        {!logged ? (
+          <>
+            <h4>Faça login</h4>
+            <p className="hint">Faça login para começar a fazer arte.</p>
+          </>
+        ) : (
+          <>
+            <h4>Como funciona</h4>
+            <p>Clique no mapa para pintar.</p>
+          </>
+        )}
       </aside>
     </div>
   );
